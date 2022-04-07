@@ -57,3 +57,45 @@ func TestCustomer_Pay_Success(t *testing.T) {
 	assert.Equal(t, float64(5000), budi.Cash)
 	assert.NoError(t, err)
 }
+
+func TestCustomer_Pay(t *testing.T) {
+	// arrange
+	customerTests := []struct {
+		name     string
+		customer *Customer
+		pay      float64
+		want     float64
+		wantErr  error
+	}{
+		{
+			name: "success",
+			customer: &Customer{
+				Name: "Budi",
+				Age:  20,
+				Cash: float64(10000),
+			},
+			pay:  float64(5000),
+			want: float64(5000),
+		},
+		{
+			name: "insufficient funds",
+			customer: &Customer{
+				Name: "Budi",
+				Age:  20,
+				Cash: float64(10000),
+			},
+			pay:     float64(100000),
+			want:    float64(10000),
+			wantErr: errors.New("Insufficient funds"),
+		},
+	}
+	for _, tt := range customerTests {
+		t.Run(tt.name, func(t *testing.T) {
+			// act
+			err := tt.customer.Pay(tt.pay)
+			// assert
+			assert.Equal(t, tt.want, tt.customer.Cash)
+			assert.Equal(t, tt.wantErr, err)
+		})
+	}
+}
