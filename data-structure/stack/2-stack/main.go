@@ -2,6 +2,13 @@ package main
 
 import "fmt"
 
+/*
+	Stack is a data structure that follows the Last In First Out (LIFO) principle.
+	Stack is a linear data structure.
+	Implementation of stack using node.
+	a node has a value and a pointer to the next node
+*/
+
 type Stack struct {
 	top    *Node
 	length int

@@ -2,12 +2,21 @@ package main
 
 import "fmt"
 
+/*
+	Stack is a data structure that follows the Last In First Out (LIFO) principle.
+	Stack is a linear data structure.
+	Implementation of stack using array.
+	Stack overflow: when the stack is full.
+	Stack underflow: when the stack is empty.
+*/
+
 type Stack struct {
 	Top  int
 	Size int
 	Data []string
 }
 
+// NewStack returns a new stack.
 func NewStack(size int) *Stack {
 	return &Stack{
 		Top:  -1,
@@ -16,6 +25,7 @@ func NewStack(size int) *Stack {
 	}
 }
 
+// Push adds a new value to the top of the stack.
 func (s *Stack) Push(v string) {
 	if s.Top+1 == s.Size {
 		fmt.Println("stack overflow")
@@ -25,6 +35,7 @@ func (s *Stack) Push(v string) {
 	s.Data[s.Top] = v
 }
 
+// Pop removes and returns the value at the top of the stack.
 func (s *Stack) Pop() string {
 	if s.Top == -1 {
 		fmt.Println("stack underflow")
@@ -35,6 +46,7 @@ func (s *Stack) Pop() string {
 	return v
 }
 
+// Peek returns the value at the top of the stack without removing it.
 func (s *Stack) Peek() string {
 	if s.Top == -1 {
 		fmt.Println("stack underflow")
@@ -43,10 +55,12 @@ func (s *Stack) Peek() string {
 	return s.Data[s.Top]
 }
 
+// IsEmpty returns true if the stack is empty.
 func (s *Stack) IsEmpty() bool {
 	return s.Top == -1
 }
 
+// Clear removes all values from the stack.
 func (s *Stack) Clear() {
 	s.Top = -1
 }
