@@ -97,28 +97,49 @@ func (s *set) Complement(s2 *set) *set {
 }
 
 func main() {
-	s := NewSet()
+	animals := NewSet()
+	birds := NewSet()
+	aquatic := NewSet()
 
-	s.Add("Peter")
-	s.Add("David")
+	animals.Add("cat")
+	animals.Add("dog")
+	animals.Add("cow")
+	animals.Add("pigeon")
+	animals.Add("fish")
+	animals.Add("chicken")
+	animals.Add("duck")
+	// animals = {cat, dog, cow, pigeon, fish, chicken, duck}
 
-	fmt.Println(s.Contains("Peter"))  // True
-	fmt.Println(s.Contains("George")) // False
+	birds.Add("eagle")
+	birds.Add("hawk")
+	birds.Add("dove")
+	birds.Add("duck")
+	birds.Add("chicken")
+	birds.Add("pigeon")
+	// birds = {eagle, hawk, dove, duck, chicken, pigeon}
 
-	s.Remove("David")
-	fmt.Println(s.Contains("David")) // False
+	animals.Remove("cow")
+	// animals = {cat, dog, pigeon, fish, chicken, duck}
 
-	animal := NewSet()
-	animal.Add("cat")
-	animal.Add("dog")
-	animal.Add("bird")
-	mamalia := NewSet()
-	mamalia.Add("dog")
-	mamalia.Add("cat")
-	mamalia.Add("cow")
+	birds.Remove("hawk")
+	// birds = {eagle, dove, duck, chicken, pigeon}
 
-	fmt.Println(animal.Intersect(mamalia).Values())
-	fmt.Println(animal.Union(mamalia).Values())
-	fmt.Println(animal.Difference(mamalia).Values())
-	fmt.Println(animal.Complement(mamalia).Values())
+	fmt.Printf("contains(%q) = %v\n", "cow", animals.Contains("cow"))
+	fmt.Printf("contains(%q) = %v\n", "dog", animals.Contains("dog"))
+
+	fmt.Printf("contains(%q) = %v\n", "hawk", birds.Contains("hawk"))
+	fmt.Printf("contains(%q) = %v\n", "eagle", birds.Contains("eagle"))
+
+	fmt.Printf("isEmpty(aquatic) = %v\n", aquatic.IsEmpty())
+
+	fmt.Printf("size(animals) = %d\n", animals.Size())
+	fmt.Printf("size(birds) = %d\n", birds.Size())
+
+	fmt.Printf("values(animals) = %v\n", animals.Values())
+	fmt.Printf("values(birds) = %v\n", birds.Values())
+
+	fmt.Printf("union(animals, birds) = %v\n", animals.Union(birds).Values())
+	fmt.Printf("intersect(animals, birds) = %v\n", animals.Intersect(birds).Values())
+	fmt.Printf("difference(animals, birds) = %v\n", animals.Difference(birds).Values())
+	fmt.Printf("complement(animals, birds) = %v\n", animals.Complement(birds).Values())
 }
