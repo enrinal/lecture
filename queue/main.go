@@ -34,13 +34,33 @@ func (q *queue) Clear() {
 }
 
 func main() {
-	q := NewQueue()
-	q.Enqueue(1)
-	q.Enqueue(2)
-	q.Enqueue(3)
+	playlist := NewQueue()
+	fmt.Printf("size: %d\n", playlist.Size())
 
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
+	playlist.Enqueue("Hello")
+	playlist.Enqueue("World")
+	fmt.Printf("size: %d\n", playlist.Size())
+	fmt.Printf("playlist: %s\n", playlist)
+
+	playlist.Enqueue("lorem")
+	playlist.Enqueue("ipsum")
+	fmt.Printf("size: %d\n", playlist.Size())
+	fmt.Printf("playlist: %s\n", playlist)
+
+	fmt.Printf("dequeue: %s\n", playlist.Dequeue())
+	fmt.Printf("size: %d\n", playlist.Size())
+	fmt.Printf("playlist: %s\n", playlist)
+
+	fmt.Printf("dequeue: %s\n", playlist.Dequeue())
+	fmt.Printf("size: %d\n", playlist.Size())
+	fmt.Printf("playlist: %s\n", playlist)
+
+	fmt.Printf("dequeue: %s\n", playlist.Dequeue())
+	fmt.Printf("size: %d\n", playlist.Size())
+	fmt.Printf("playlist: %s\n", playlist)
+
+	fmt.Printf("dequeue: %s\n", playlist.Dequeue())
+	fmt.Printf("size: %d\n", playlist.Size())
+	fmt.Printf("playlist: %s\n", playlist)
+
 }

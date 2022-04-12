@@ -96,6 +96,28 @@ func (s *set) Complement(s2 *set) *set {
 	return s3
 }
 
+func (s *set) Disjoint(s2 *set) bool {
+	for k := range s.m {
+		if s2.Contains(k) {
+			return false
+		}
+	}
+	return true
+}
+
+func (s *set) IsSuperset(s2 *set) bool {
+	for k := range s2.m {
+		if !s.Contains(k) {
+			return false
+		}
+	}
+	return true
+}
+
+func (s *set) IsSubset(s2 *set) bool {
+	return s2.IsSuperset(s)
+}
+
 func main() {
 	animals := NewSet()
 	birds := NewSet()
