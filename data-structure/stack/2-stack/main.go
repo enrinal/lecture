@@ -6,7 +6,7 @@ import "fmt"
 	Stack is a data structure that follows the Last In First Out (LIFO) principle.
 	Stack is a linear data structure.
 	Implementation of stack using node.
-	a node has a value and a pointer to the next node
+	a node has a value and a pointer to the prev node
 */
 
 type Stack struct {
@@ -16,7 +16,7 @@ type Stack struct {
 
 type Node struct {
 	value interface{}
-	next  *Node
+	prev  *Node
 }
 
 // NewStack returns a pointer to a new stack.
@@ -36,7 +36,7 @@ func (s *Stack) Pop() interface{} {
 		return nil
 	}
 	value := s.top.value
-	s.top = s.top.next
+	s.top = s.top.prev
 	s.length--
 	return value
 }
@@ -67,7 +67,7 @@ func (s *Stack) Clear() {
 
 func (s *Stack) String() string {
 	str := "Stack: "
-	for current := s.top; current != nil; current = current.next {
+	for current := s.top; current != nil; current = current.prev {
 		str += fmt.Sprintf("%v ", current.value)
 	}
 	return str

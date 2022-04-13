@@ -88,5 +88,10 @@ func main() {
 	fmt.Println(stacko.Pop())
 	fmt.Println(stacko.Pop())
 	fmt.Println(stacko.Pop())
-	fmt.Println(stacko.Pop())
+
+	stacko.Push("dog")
+	stacko.Push("cat")
+	stacko.Push("bird")
+	stacko.Push("fish")
+
 }
