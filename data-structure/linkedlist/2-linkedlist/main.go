@@ -27,17 +27,17 @@ func (l *LinkedList) PushBack(val int) {
 		l.Head = node
 		l.Tail = node
 	} else {
-		node.Next = l.Head
-		l.Head = node
+		l.Tail.Next = node
+		l.Tail = node
 	}
 }
 
 func (l *LinkedList) PushFront(val int) {
 	node := &Node{
 		Val:  val,
-		Next: l.Head,
+		Next: nil,
 	}
-
+	node.Next = l.Head
 	l.Head = node
 }
 
@@ -93,12 +93,16 @@ func main() {
 	l.PushBack(3)
 	l.PushBack(4)
 	l.PushBack(5)
+	l.Print()
 
 	l.PushFront(0)
 
 	l.Print()
-	l.Remove(3)
-	l.Print()
-	l.Reverse()
-	l.Print()
+	//l.PushFront(0)
+	//
+	//l.Print()
+	//l.Remove(3)
+	//l.Print()
+	//l.Reverse()
+	//l.Print()
 }
